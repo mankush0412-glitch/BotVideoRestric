@@ -1,0 +1,40 @@
+services:
+  # Background Worker — actual bot process
+  - type: worker
+    name: botextractor-worker
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m devgagan
+    envVars:
+      - key: API_ID
+        sync: false
+      - key: API_HASH
+        sync: false
+      - key: BOT_TOKEN
+        sync: false
+      - key: OWNER_ID
+        sync: false
+      - key: MONGO_DB
+        sync: false
+      - key: LOG_GROUP
+        sync: false
+      - key: CHANNEL_ID
+        sync: false
+      - key: FREEMIUM_LIMIT
+        value: "5"
+      - key: PREMIUM_LIMIT
+        value: "200"
+      - key: DEFAULT_SESSION
+        sync: false
+
+  # Web Service — keeps free tier alive (UptimeRobot ping karta hai isko)
+  - type: web
+    name: botextractor-web
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: PORT
+        value: "8080"

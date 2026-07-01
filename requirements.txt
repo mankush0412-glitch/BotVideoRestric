@@ -1,0 +1,10 @@
+pyrofork
+tgcrypto
+pyromod
+motor
+pymongo
+telethon
+telethon-tgcrypto
+aiojobs
+flask
+python-dotenv
